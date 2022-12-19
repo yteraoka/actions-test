@@ -7,11 +7,18 @@ import (
 	"os"
 )
 
+var (
+	version = "unknown"
+	commit = "unknown"
+	date = "unknown"
+)
+
 func handler(w http.ResponseWriter, r *http.Request) {
 	response_code := http.StatusOK
-	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(response_code)
-	fmt.Fprintf(w, "OK\n")
+	fmt.Fprintf(w, "{\"status\":\"ok\",\"version\":\"%s\",\"commit\":\"%s\",\"date\":\"%s\"}\n",
+			version, commit, date)
 }
 
 func main() {
